@@ -1,0 +1,83 @@
+http://hao-test.sasaktv.com/default.aspx
+development RN8JHdoAwTT#A
+GameServerLogin YtLxKciA8JHdoA
+justsoso
+--执行存储过程
+exec dbo.GSP_GP_EfficacyAccounts_match 'ceshi10709', 'e10adc3949ba59abbe56e057f20f883e', '1.1.1.1', '00', 'ff', 'cpu', 'hd',
+'mac', 'protect', 10, 40, 84, 'guid', '00000001'
+
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP 1000 [Accounts]
+      ,[InsurePass]
+  FROM [QPGameUserDB].[dbo].[AccountsInfo]
+
+
+SELECT *
+  FROM [QPGameUserDB].[dbo].[AccountsInfo] where [Accounts] = '91ytestno76'
+
+USE [fund]
+GO
+
+DECLARE	@return_value int,
+		@Returnprm varchar(256),
+		@Ret int,
+		@Retmessage varchar(50)
+
+EXEC	@return_value = [dbo].[change_gold]
+		@Action = 1,
+		@App = 31,
+		@UserID = 1000020,
+		@TargetUserID = 0,
+		@ObjectID = 0,
+		@ObjectNum = 0,
+		@ScoreChange = 86,
+		@GameID = 1,
+		@KindID = 1,
+		@Descpt = N'ceshi',
+		@Prm1 = '',
+		@Prm2 = '',
+		@Prm3 = '',
+		@Prm4 = '',
+		@Returnprm = @Returnprm OUTPUT,
+		@Ret = @Ret OUTPUT,
+		@Retmessage = @Retmessage OUTPUT
+
+SELECT	@Returnprm as N'@Returnprm',
+		@Ret as N'@Ret',
+		@Retmessage as N'@Retmessage'
+
+SELECT	'Return Value' = @return_value
+
+GO
+
+
+SELECT TOP 1000 [R_Id]
+      ,[user_id]
+      ,[fund_id]
+      ,[fund_count]
+      ,[up_code]
+      ,[modify_time]
+  FROM [fund].[dbo].[user_fund] where modify_time < CONVERT(datetime, '2015-05-08 17:40:00', 120)
+
+
+//给自增fund_id自定义值
+SET IDENTITY_INSERT dbo.fund_type_def on
+
+INSERT INTO [fund].[dbo].[fund_type_def]
+           ([fund_id]
+           ,[fund_type]
+           ,[fund_name]
+           ,[att_fund_id]
+           ,[is_main_id]
+           ,[is_outside_fund])
+     VALUES
+           (10
+           ,0
+           ,'金币'
+           ,0
+           ,1
+           ,1)
+GO
+
+//
+with(unlock)
