@@ -42,3 +42,13 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /sql/database/DataDB/*.refactorlog
+/test1/main_lua_test2
+/test1/Debug
+/test1/lua_test
+/test1/lua_test2
+/test1/Release
+/test1/testonly
+/test1/pbc-master.zip
+/test1/test1.sdf
+/test1/testonly
+/test1/lua_test.rar
